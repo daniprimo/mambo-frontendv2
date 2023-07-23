@@ -18,7 +18,7 @@ export default function ListaViagemPassadas(props) {
                 <li
                   class="flex justify-between gap-x-6
            py-5 ease-linear transform hover:scale-105
-            transition duration-500 bg-red-900 px-6 py-2 m-5 inline"
+            transition duration-500 bg-red-900 px-6 py-2 m-5 inline rounded-t-2xl"
                   onClick={() => clicou(viagem.id)}
                 >
                   <div class="flex gap-x-4">
@@ -47,7 +47,7 @@ export default function ListaViagemPassadas(props) {
                   </div>
   
   
-                  <div class="hidden sm:flex sm:flex-col">
+                  <div class="sm:flex sm:flex-col">
                     <p class="text-sm font-semibold leading-6 text-white">
                     Destino
                     </p>
