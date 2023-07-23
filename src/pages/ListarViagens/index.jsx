@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { bucsarViagem } from "../../service";
 import ListaViagemPassadas from "../../components/ListarViagens";
 
