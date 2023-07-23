@@ -55,7 +55,7 @@ export default function FormularioProgramarViagem() {
 
   return (
     <div className="space-y-12">
-      <div className="border-b border-gray-900/10 pb-12">
+      <div className="mt-5 border-gray-900/10 pb-12 h-50 ">
         <h2 className="text-base font-semibold leading-7 text-gray-900">
           Programação de Viagens
         </h2>
@@ -71,8 +71,8 @@ export default function FormularioProgramarViagem() {
           <InputOrigem puxarOrigem={setarOrigem} nomeDoCampo={"Origem"} />
 
 
-          <InputTabelaEntregas addListaEntregas={setarLoja}></InputTabelaEntregas>
         </div>
+        <InputTabelaEntregas addListaEntregas={setarLoja}></InputTabelaEntregas>
 
         <ListaTabelaEntregas
           listaDasLojas={loja}
@@ -89,7 +89,7 @@ export default function FormularioProgramarViagem() {
           type="button"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={() => mostra()}
-        ></button>
+        >Programar</button>
       </div>
     </div>
   );
