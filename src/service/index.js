@@ -1,7 +1,6 @@
 import { api } from './api';
 
 
-
 export const buscarMotorista =  () => {
     const url = '/motorista';
     return api.get(url);    
