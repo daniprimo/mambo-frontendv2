@@ -11,7 +11,8 @@ export default function Rota() {
         <Route path="" element={<Home />} />
         <Route path="/programacao" element={<Programacao />} />
         <Route path="/relatorio" element={<ListarViagem />} />
-        <Route path="/consultaViagem" element={<ConsultaViagem />} />
+        <Route path="/consultaViagem/:id" element={<ConsultaViagem />} />
+        <Route path="/consultaViagem/" element={<ConsultaViagem />} />
       </Routes>
   );
 }

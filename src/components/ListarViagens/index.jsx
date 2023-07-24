@@ -6,7 +6,7 @@ export default function ListaViagemPassadas(props) {
 
     const clicou = (e) => { 
         console.log(e)
-        navegar("/consultaViagem")
+        navegar(`/consultaViagem/${e}`)
      }
   
     return (

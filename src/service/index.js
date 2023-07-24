@@ -31,3 +31,8 @@ export const bucsarViagem =  () => {
     const url = "/viagem";
     return api.get(url);
 } 
+
+export const bucsarViagemPorId =  (id) => {
+    const url = `/viagem/${id}`;
+    return api.get(url);
+} 

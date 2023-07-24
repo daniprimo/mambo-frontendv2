@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { bucsarViagemPorId } from "../../../service";
 
 export default function TabelaDoConsulta(props) {
+  const [lojas, setLojas] = useState([]);
+  const [totalPallet, setTotalPallet] = useState();
+
+  useEffect(() => {
+    bucsarViagemPorId(props.id).then((resp) => {
+      setLojas(resp.data.lojas);
+      console.log(lojas);
+    });
+  }, []);
+
+
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -30,29 +42,37 @@ export default function TabelaDoConsulta(props) {
                 </tr>
               </thead>
               <tbody>
-                      <tr className="border-b dark:border-neutral-500">
+                {lojas.map((resp) => {
+                  const totalPallets = parseInt(resp.quantidadeDePalletFlv)+parseInt(resp.quantidadeDePalletMercearia)+parseInt(resp.quantidadeDePalletFriozem)
+                  props.pegarTotalPallet(parseInt(resp.quantidadeDePalletFlv)+parseInt(resp.quantidadeDePalletMercearia)+parseInt(resp.quantidadeDePalletFriozem))
+                  return (
+                    <>
+                      <tr className="border-b dark:border-neutral-500 text-center">
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
-                          M5
+                          {resp.loja.nomeLoja}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
-                          1
+                          {resp.quantidadeDePalletFlv}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 font-medium">
+                          {resp.quantidadeDePalletMercearia}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 font-medium">
+                          {resp.quantidadeDePalletFriozem}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
                           0
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
-                          5
+                          {totalPallets}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
-                          0
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4 font-medium">
-                            0
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4 font-medium">
-                            <button>Botoes de excluir / alterar</button>
+                          <button>Botoes de excluir / alterar</button>
                         </td>
                       </tr>
+                    </>
+                  );
+                })}
               </tbody>
             </table>
           </div>
