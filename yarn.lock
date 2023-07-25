@@ -3504,7 +3504,7 @@ axe-core@^4.6.2:
   resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.7.2.tgz"
   integrity sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==
 
-axios@^0.27.2:
+axios@^0.27.0, axios@^0.27.2:
   version "0.27.2"
   resolved "https://registry.npmjs.org/axios/-/axios-0.27.2.tgz"
   integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
@@ -10380,11 +10380,6 @@ react-axios@^2.0.6:
   resolved "https://registry.npmjs.org/react-axios/-/react-axios-2.0.6.tgz"
   integrity sha512-srQnLZXaW9LDJyC4/qvQ7aPi/rUpsggd3RIM5Q/vFLlQZ4l5bvPtqP/2+UeRXhJH75NfxbcPD3FkjiKONn5V8Q==
 
-react-circle@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/react-circle/-/react-circle-1.1.1.tgz"
-  integrity sha512-iphQfy+MRuNuBqJyZlGKbxyBJhDszaiT5eTiilFFPuwo5nsW5k/uH0KCq/sXXBMiJpLJ/Ly3arkUDvrK62Zung==
-
 react-dev-utils@^12.0.1:
   version "12.0.1"
   resolved "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-12.0.1.tgz"
@@ -10523,7 +10518,7 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
-"react@^16.0.0 || ^17.0.0 || ^18.0.0", react@^16.2.0, react@^18.0.0, react@^18.2.0, "react@>= 16", react@>=16.8:
+"react@^16.0.0 || ^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, "react@>= 16", react@>=16.8:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
