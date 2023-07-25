@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Status from "../../components/SinalizadorDeStatus";
 import { CampoMostrarMotorista, CampoMostrarOrigem, CampoMostrarTipo, CampoMostrarVeiculo } from "../../components/Inputs/CampoParaMostrarDados";
 import TabelaDoConsulta from "../../components/TabelaAdicionarLojaEntrega/TabelaMostrado";
-import { Circle } from "react-circle";
 import { useParams } from "react-router-dom";
 import { ChegadaCD, ChegadaLoja, FinalCarregamento, InicioCarregamento, Programado, SaidaLoja } from "../../components/Inputs/CampoHorario";
 
@@ -48,7 +47,6 @@ export default function ConsultaViagem() {
           </div>
           <div className="flex-row mt-3 w-100 ">
             <h1 className="">Ocupação do baú</h1>
-            <Circle animate="true" progress={92} size="280" />
           </div>
         </div>
       </div>
