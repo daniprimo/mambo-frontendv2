@@ -50,7 +50,7 @@ export default function FormularioProgramarViagem() {
       .catch((e) => console.log(e));
     console.log(data);
     console.log(dataSalva);
-    navegar(0)
+    navegar("/relatorio")
   }
 
   return (
