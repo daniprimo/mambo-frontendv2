@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { bucsarViagem } from "../../service";
+import { bucsarViagem, bucsarViagemPorData } from "../../service";
 import ListaViagemPassadas from "../../components/ListarViagens";
 import Loading from "../../components/Loading";
 import DatePicker from "react-datepicker";
@@ -9,21 +9,67 @@ export default function ListarViagem() {
   const [motorista, setMotorista] = useState([]);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
+  const [dataFormatada, setDataFormatada] = useState();
 
   useEffect(() => {
-    bucsarViagem()
+    bucsarViagemPorData(dateFormat(data))
       .then((response) => {
         setMotorista(response.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [data]);
+
+  const dateFormatAux = (data) => {
+  
+    if (data != null){
+    var date = new Date(data),
+      ano = date.getFullYear(),
+      mes = "" + (date.getMonth() + 1),
+      dia = "" + date.getDate();
+
+    if (mes.length < 2) {
+      mes = "0" + mes;
+    }
+    if (dia.length < 2) {
+      dia = "0" + dia;
+    }
+
+    return [ano, mes, dia].join("-");
+  } else {
+    const atual = dateDefault();
+    return atual;
+  }
+
+  };
+
+  const dateFormat = (data) => {
+    let formataAnoMesDia = dateFormatAux(data);
+    return formataAnoMesDia;
+  };
+
+  const dateDefault = () => {
+    var date = new Date(),
+      ano = date.getFullYear(),
+      mes = "" + (date.getMonth() + 1),
+      dia = "" + date.getDate();
+
+    if (mes.length < 2) {
+      mes = "0" + mes;
+    }
+    if (dia.length < 2) {
+      dia = "0" + dia;
+    }
+
+    return [ano, mes, dia].join("-");
+  };
+
 
   return (
     <>
       <h2>Relatorios</h2>
 
-      <div>
+      <div className="overflow-hidden inline-block min-w-full py-2 sm:px-6 ">
         <DatePicker
           selected={data}
           onChange={(date) => setData(date)}
@@ -34,6 +80,7 @@ export default function ListarViagem() {
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
           placeholderText="Data"
+          dateFormat="dd-MM-yyyy"
         />
       </div>
 
