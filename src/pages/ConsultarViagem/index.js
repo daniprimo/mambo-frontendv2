@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ChegadaCD, ChegadaLoja, FinalCarregamento, InicioCarregamento, Programado, SaidaLoja } from "../../components/Inputs/CampoHorario";
+import { ChegadaCD, ChegadaLoja, FinalCarregamento, InicioCarregamento, InputConsulta, Programado, SaidaLoja } from "../../components/Inputs/CampoHorario";
 import { CampoInputValueTexto } from "../../components/Inputs/CampoParaMostrarDados";
 import Status from "../../components/SinalizadorDeStatus";
 import TabelaDoConsulta from "../../components/TabelaAdicionarLojaEntrega/TabelaMostrado";
@@ -14,14 +14,15 @@ export default function ConsultaViagem() {
   const [chegadaNaLoja, setChegadaNaLoja] = useState()
   const [saidadaNaLoja, setSaidadaNaLoja] = useState()
   const [chegadaNoCd, setChegadaNoCd] = useState()
-
+  const [programado, setProgramado] = useState() 
+  
   const [motorista, setMotorista] = useState()
   const [veiculo, setVeiculo] = useState()
   const [tipo, setTipoVeiculo] = useState()
   const [origem, setOrigem] = useState()
-
+  
   const {id} = useParams();
-
+  
   useEffect(() => {
     bucsarViagemPorId(id)
     .then((resp) => {
@@ -30,6 +31,8 @@ export default function ConsultaViagem() {
       setVeiculo(resp.data.veiculo.placa)
       setMotorista(resp.data.motorista.nome)
 
+      
+      setProgramado(resp.data.horaDoRegistro)
       setInitCarregamento(resp.data.horarios.inicioDescarregamento);
       setFinCarregamento(resp.data.horarios.fimDoCarregamento);
       setChegadaNaLoja(resp.data.horarios.chegadaLoja);
@@ -38,11 +41,10 @@ export default function ConsultaViagem() {
 
     }).catch(err => console.log(err))
   })
-
-
-
+  
+  
+  
   const [total, setTotal] = useState()
-  const [programado, setProgramado] = useState({})
 
   function totalPallets(e) {
     setTotal(e)
@@ -68,23 +70,16 @@ export default function ConsultaViagem() {
         <TabelaDoConsulta id={id} pegarTotalPallet={totalPallets}/>
       </div>
 
-      <div className="group p-6 border-2 cursor-pointer hover:bg-gray-50 hover:border-blue-100">
-      <label>Infortmações:</label>
-        <div className="grid grid-cols-2 inline-block">
-          <div className="grid grid-cols-3 mt-3">
-            <Programado id={id} />
-            <InicioCarregamento id={id}/>
-            <FinalCarregamento id={id}/>
-            <ChegadaLoja id={id}/>
-            <SaidaLoja id={id}/>
-            <ChegadaCD id={id}/>
+            <InputConsulta 
+              programado={programado}
+              iniciarCarregamento={initCarregamento}
+              finalizarCarregamento={finCarregamento}
+              chegadaLoja={chegadaNaLoja}
+              saidaLoja={saidadaNaLoja}
+              ChegadaCD={chegadaNoCd}
+              id={id}
+            />
 
-          </div>
-          <div className="flex-row mt-3 w-100 ">
-            <h1 className="">Ocupação do baú</h1>
-          </div>
-        </div>
-      </div>
     </>
   );
 }
