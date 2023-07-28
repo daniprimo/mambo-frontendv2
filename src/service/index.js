@@ -44,3 +44,37 @@ export const bucsarViagemPorId =  (id) => {
     const url = `/viagem/${id}`;
     return api.get(url);
 } 
+
+export const iniciarCarregamento =  (id) => {
+    const url = `/acoes/inicioCarregamento/${id}?id=${id}`;
+    return api.post(url);
+}
+
+export const fimCarregamento =  (id) => {
+    const url = `/acoes/fimCarregamento/${id}?id=${id}`;
+    return api.post(url);
+}
+
+
+export const saidaCD =  (id) => {
+    const url = `oes/saidaCD/${id}?id=${id}`;
+    return api.post(url);
+}
+
+
+export const chegadaLoja =  (id) => {
+    const url = `/acoes/chegadaLoja/${id}?id=${id}`;
+    return api.post(url);
+}
+
+
+export const saidaLoja =  (id) => {
+    const url = `/acoes/saidaLoja/${id}?id=${id}`;
+    return api.post(url);
+}
+
+
+export const chegadaCD =  (id) => {
+    const url = `/acoes/chegadaCD/${id}?id=${id}`;
+    return api.post(url);
+}

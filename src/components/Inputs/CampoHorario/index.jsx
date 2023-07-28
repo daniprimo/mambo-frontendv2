@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { bucsarViagemPorId } from "../../../service";
+import { bucsarViagemPorId, iniciarCarregamento, fimCarregamento, chegadaLoja, saidaLoja, chegadaCD } from "../../../service";
+import { useNavigate } from "react-router-dom";
 
 export function Programado(props) {
-  const [horario, setHorario] = useState();
+  const [data, setData] = useState({});
 
   useEffect(() => {
     bucsarViagemPorId(props.id)
       .then((resp) => {
-        setHorario(resp.data.horarios);
-        console.log(horario)
+        setData(resp.data.horaDoRegistro);
       })
       .catch((err) => console.log(err));
-  }, []);
+    }, []);
+    
 
   return (
     <div>
@@ -29,7 +30,7 @@ export function Programado(props) {
          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
-          value={""}
+          value={data}
         />
       </div>
     </div>
@@ -37,16 +38,22 @@ export function Programado(props) {
 }
 
 export function InicioCarregamento(props) {
+  const navigate = useNavigate();
+
   const [horario, setHorario] = useState();
 
   useEffect(() => {
     bucsarViagemPorId(props.id)
       .then((resp) => {
-        setHorario(resp.data.horarios);
-        console.log(horario)
+        setHorario(resp.data.horarios.inicioDescarregamento);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const acao = (id) => {
+    iniciarCarregamento(id)
+    navigate(0)
+  }
 
   return (
     <div>
@@ -64,24 +71,41 @@ export function InicioCarregamento(props) {
          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
-          value={""}
+          value={horario}
         />
+
       </div>
+        <button
+          type="submit"
+          className="rounded-md bg-indigo-600 
+           text-sm font-semibold text-white 
+           shadow-sm hover:bg-indigo-500
+            focus-visible:outline focus-visible:outline-2
+             focus-visible:outline-offset-2
+              focus-visible:outline-indigo-600"
+          onClick={() => acao(props.id)}
+        >consolidar</button>
     </div>
   );
 }
 
 export function FinalCarregamento(props) {
-  const [fimCarregamento, setFimCarregamento] = useState();
+  const [finalizarCarregamento, setfinalizarCarregamento] = useState();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     bucsarViagemPorId(props.id)
       .then((resp) => {
-        setFimCarregamento(resp.data.horarios);
-        console.log(fimCarregamento)
+        setfinalizarCarregamento(resp.data.horarios.fimDoCarregamento);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const acao = (id) => {
+    fimCarregamento(id)
+    navigate(0)
+  }
 
   return (
     <div>
@@ -99,24 +123,40 @@ export function FinalCarregamento(props) {
          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
-          value={""}
+          value={finalizarCarregamento}
         />
       </div>
+      <button
+          type="button"
+          className="rounded-md bg-indigo-600 
+           text-sm font-semibold text-white 
+           shadow-sm hover:bg-indigo-500
+            focus-visible:outline focus-visible:outline-2
+             focus-visible:outline-offset-2
+              focus-visible:outline-indigo-600"
+          onClick={() => acao(props.id)}
+        >consolidar</button>
+
     </div>
   );
 }
 
 export function ChegadaLoja(props) {
-  const [chegadaLoja, setChegadaLoja] = useState();
+  const [chegadaNaLoja, setchegadaNaLoja] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     bucsarViagemPorId(props.id)
       .then((resp) => {
-        setChegadaLoja(resp.data.horarios);
-        console.log(chegadaLoja)
+        setchegadaNaLoja(resp.data.horarios.chegadaLoja);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const acao = (id) => {
+    chegadaLoja(id)
+    navigate(0)
+  }
 
   return (
     <div>
@@ -134,23 +174,40 @@ export function ChegadaLoja(props) {
          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
-          value={""}
+          value={chegadaNaLoja}
         />
       </div>
+      <button
+          type="button"
+          className="rounded-md bg-indigo-600 
+           text-sm font-semibold text-white 
+           shadow-sm hover:bg-indigo-500
+            focus-visible:outline focus-visible:outline-2
+             focus-visible:outline-offset-2
+              focus-visible:outline-indigo-600"
+          onClick={() => acao(props.id)}
+        >consolidar</button>
+
     </div>
   );
 }
 
 export function SaidaLoja(props) {
-  const [saidaLoja, setSaidaLoja] = useState();
+  const [saidaDaLoja, setsaidaDaLoja] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     bucsarViagemPorId(props.id)
       .then((resp) => {
-        setSaidaLoja(resp.data.horarios);
+        setsaidaDaLoja(resp.data.horarios.saidaLoja);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const acao = (id) => {
+    saidaLoja(id)
+    navigate(0)
+  }
 
   return (
     <div>
@@ -168,23 +225,40 @@ export function SaidaLoja(props) {
          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
-          value={""}
+          value={saidaDaLoja}
         />
       </div>
+      <button
+          type="button"
+          className="rounded-md bg-indigo-600 
+           text-sm font-semibold text-white 
+           shadow-sm hover:bg-indigo-500
+            focus-visible:outline focus-visible:outline-2
+             focus-visible:outline-offset-2
+              focus-visible:outline-indigo-600"
+          onClick={() => acao(props.id)}
+        >consolidar</button>
+
     </div>
   );
 }
 
 export function ChegadaCD(props) {
-  const [chegadaCD, setChegadaCD] = useState();
+  const [chegadaNoCD, setchegadaNoCD] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     bucsarViagemPorId(props.id)
       .then((resp) => {
-        setChegadaCD(resp.data.horarios);
+        setchegadaNoCD(resp.data.horarios.chegadaCD);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const acao = (id) => {
+    chegadaCD(id)
+    navigate(0)
+  }
 
   return (
     <div>
@@ -202,9 +276,24 @@ export function ChegadaCD(props) {
          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
-          value={""}
+          value={chegadaNoCD}
         />
       </div>
+      <button
+          type="button"
+          className="rounded-md bg-indigo-600 
+           text-sm font-semibold text-white 
+           shadow-sm hover:bg-indigo-500
+            focus-visible:outline focus-visible:outline-2
+             focus-visible:outline-offset-2
+              focus-visible:outline-indigo-600"
+          onClick={() => acao(props.id)}
+        >consolidar</button>
+
     </div>
   );
+}
+
+export function inputConsulta(props){
+
 }

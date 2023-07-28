@@ -1,19 +1,54 @@
 import React, { useEffect, useState } from "react";
-import Status from "../../components/SinalizadorDeStatus";
-import { CampoMostrarMotorista, CampoMostrarOrigem, CampoMostrarTipo, CampoMostrarVeiculo } from "../../components/Inputs/CampoParaMostrarDados";
-import TabelaDoConsulta from "../../components/TabelaAdicionarLojaEntrega/TabelaMostrado";
 import { useParams } from "react-router-dom";
 import { ChegadaCD, ChegadaLoja, FinalCarregamento, InicioCarregamento, Programado, SaidaLoja } from "../../components/Inputs/CampoHorario";
+import { CampoInputValueTexto } from "../../components/Inputs/CampoParaMostrarDados";
+import Status from "../../components/SinalizadorDeStatus";
+import TabelaDoConsulta from "../../components/TabelaAdicionarLojaEntrega/TabelaMostrado";
+import { bucsarViagemPorId } from "../../service";
 
 export default function ConsultaViagem() {
 
+
+  const [initCarregamento, setInitCarregamento] = useState()
+  const [finCarregamento, setFinCarregamento] = useState()
+  const [chegadaNaLoja, setChegadaNaLoja] = useState()
+  const [saidadaNaLoja, setSaidadaNaLoja] = useState()
+  const [chegadaNoCd, setChegadaNoCd] = useState()
+
+  const [motorista, setMotorista] = useState()
+  const [veiculo, setVeiculo] = useState()
+  const [tipo, setTipoVeiculo] = useState()
+  const [origem, setOrigem] = useState()
+
   const {id} = useParams();
+
+  useEffect(() => {
+    bucsarViagemPorId(id)
+    .then((resp) => {
+      setOrigem(resp.data.origem.nome)
+      setTipoVeiculo(resp.data.veiculo.tipoDoVeiculo)
+      setVeiculo(resp.data.veiculo.placa)
+      setMotorista(resp.data.motorista.nome)
+
+      setInitCarregamento(resp.data.horarios.inicioDescarregamento);
+      setFinCarregamento(resp.data.horarios.fimDoCarregamento);
+      setChegadaNaLoja(resp.data.horarios.chegadaLoja);
+      setSaidadaNaLoja(resp.data.horarios.saidaLoja);
+      setChegadaNoCd(resp.data.horarios.chegadaCD);
+
+    }).catch(err => console.log(err))
+  })
+
+
+
   const [total, setTotal] = useState()
+  const [programado, setProgramado] = useState({})
 
   function totalPallets(e) {
     setTotal(e)
     console.log(total)
   }
+
   
   
   return (
@@ -22,10 +57,10 @@ export default function ConsultaViagem() {
       <div className="inline-block group p-6 border-2 cursor-pointer hover:bg-gray-50 hover:border-blue-100">
         <label>Viagem Nº: {id}</label>
         <div className="grid grid-cols-4 ">
-          <CampoMostrarMotorista id={id} label={"Motorista"}/>
-          <CampoMostrarVeiculo id={id} label={"Placa"}/>
-          <CampoMostrarOrigem id={id} label={"Tipo"}/>
-          <CampoMostrarTipo id={id} label={"Origem"}/>
+          <CampoInputValueTexto label={"Motorista"} conteudo={motorista}/>
+          <CampoInputValueTexto label={"Placa"} conteudo={veiculo}/>
+          <CampoInputValueTexto label={"Veiculo"} conteudo={tipo}/>
+          <CampoInputValueTexto label={"Origem"} conteudo={origem}/>
         </div>
       </div>
       <div className="inline-block group p-6 border-2 cursor-pointer hover:bg-gray-50 hover:border-blue-100 w-full">
@@ -37,7 +72,7 @@ export default function ConsultaViagem() {
       <label>Infortmações:</label>
         <div className="grid grid-cols-2 inline-block">
           <div className="grid grid-cols-3 mt-3">
-            <Programado id={id}/>
+            <Programado id={id} />
             <InicioCarregamento id={id}/>
             <FinalCarregamento id={id}/>
             <ChegadaLoja id={id}/>
