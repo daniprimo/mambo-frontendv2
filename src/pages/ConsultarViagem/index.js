@@ -11,6 +11,7 @@ export default function ConsultaViagem() {
 
   const [initCarregamento, setInitCarregamento] = useState()
   const [finCarregamento, setFinCarregamento] = useState()
+  const [saidaCD, setSaidaCD] = useState()
   const [chegadaNaLoja, setChegadaNaLoja] = useState()
   const [saidadaNaLoja, setSaidadaNaLoja] = useState()
   const [chegadaNoCd, setChegadaNoCd] = useState()
@@ -31,10 +32,10 @@ export default function ConsultaViagem() {
       setVeiculo(resp.data.veiculo.placa)
       setMotorista(resp.data.motorista.nome)
 
-      
       setProgramado(resp.data.horaDoRegistro)
       setInitCarregamento(resp.data.horarios.inicioDescarregamento);
       setFinCarregamento(resp.data.horarios.fimDoCarregamento);
+      setSaidaCD(resp.data.horarios.saidaCD)
       setChegadaNaLoja(resp.data.horarios.chegadaLoja);
       setSaidadaNaLoja(resp.data.horarios.saidaLoja);
       setChegadaNoCd(resp.data.horarios.chegadaCD);
@@ -74,6 +75,7 @@ export default function ConsultaViagem() {
               programado={programado}
               iniciarCarregamento={initCarregamento}
               finalizarCarregamento={finCarregamento}
+              saidaCD={saidaCD}
               chegadaLoja={chegadaNaLoja}
               saidaLoja={saidadaNaLoja}
               ChegadaCD={chegadaNoCd}
