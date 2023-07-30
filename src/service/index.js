@@ -57,7 +57,7 @@ export const fimCarregamento =  (id) => {
 
 
 export const saidaCD =  (id) => {
-    const url = `oes/saidaCD/${id}?id=${id}`;
+    const url = `/acoes/saidaCD/${id}?id=${id}`;
     return api.post(url);
 }
 
