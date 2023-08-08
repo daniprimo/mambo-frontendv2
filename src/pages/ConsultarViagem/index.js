@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ChegadaCD, ChegadaLoja, FinalCarregamento, InicioCarregamento, InputConsulta, Programado, SaidaLoja } from "../../components/Inputs/CampoHorario";
+import { InputConsulta } from "../../components/Inputs/CampoHorario";
 import { CampoInputValueTexto } from "../../components/Inputs/CampoParaMostrarDados";
 import Status from "../../components/SinalizadorDeStatus";
 import TabelaDoConsulta from "../../components/TabelaAdicionarLojaEntrega/TabelaMostrado";
