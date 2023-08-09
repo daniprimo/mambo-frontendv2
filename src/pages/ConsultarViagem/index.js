@@ -4,13 +4,14 @@ import { InputConsulta } from "../../components/Inputs/CampoHorario";
 import { CampoInputValueTexto } from "../../components/Inputs/CampoParaMostrarDados";
 import Status from "../../components/SinalizadorDeStatus";
 import TabelaDoConsulta from "../../components/TabelaAdicionarLojaEntrega/TabelaMostrado";
-import { bucsarViagemPorId } from "../../service";
+import { bucsarViagemPorId, saidaCD } from "../../service";
 
 export default function ConsultaViagem() {
 
 
   const [initCarregamento, setInitCarregamento] = useState()
   const [finCarregamento, setFinCarregamento] = useState()
+  const [saidaCD, setSaidaDoCD] = useState()
   const [chegadaNaLoja, setChegadaNaLoja] = useState()
   const [saidadaNaLoja, setSaidadaNaLoja] = useState()
   const [chegadaNoCd, setChegadaNoCd] = useState()
@@ -35,6 +36,7 @@ export default function ConsultaViagem() {
       setProgramado(resp.data.horaDoRegistro)
       setInitCarregamento(resp.data.horarios.inicioDescarregamento);
       setFinCarregamento(resp.data.horarios.fimDoCarregamento);
+      setSaidaDoCD(resp.data.horarios.saidaCD)
       setChegadaNaLoja(resp.data.horarios.chegadaLoja);
       setSaidadaNaLoja(resp.data.horarios.saidaLoja);
       setChegadaNoCd(resp.data.horarios.chegadaCD);
@@ -74,6 +76,7 @@ export default function ConsultaViagem() {
               programado={programado}
               iniciarCarregamento={initCarregamento}
               finalizarCarregamento={finCarregamento}
+              saidaDoCD={saidaCD}
               chegadaLoja={chegadaNaLoja}
               saidaLoja={saidadaNaLoja}
               ChegadaCD={chegadaNoCd}
