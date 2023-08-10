@@ -4,7 +4,7 @@ import { InputConsulta } from "../../components/Inputs/CampoHorario";
 import { CampoInputValueTexto } from "../../components/Inputs/CampoParaMostrarDados";
 import Status from "../../components/SinalizadorDeStatus";
 import TabelaDoConsulta from "../../components/TabelaAdicionarLojaEntrega/TabelaMostrado";
-import { bucsarViagemPorId, saidaCD } from "../../service";
+import { bucsarViagemPorId } from "../../service";
 
 export default function ConsultaViagem() {
 
@@ -35,7 +35,7 @@ export default function ConsultaViagem() {
       setProgramado(resp.data.horaDoRegistro)
       setInitCarregamento(resp.data.horarios.inicioDescarregamento);
       setFinCarregamento(resp.data.horarios.fimDoCarregamento);
-      setSaidaCD(resp.data.horarios.saidaCD)
+      setSaidaDoCD(resp.data.horarios.saidaCD)
       setChegadaNaLoja(resp.data.horarios.chegadaLoja);
       setSaidadaNaLoja(resp.data.horarios.saidaLoja);
       setChegadaNoCd(resp.data.horarios.chegadaCD);
@@ -75,7 +75,7 @@ export default function ConsultaViagem() {
               programado={programado}
               iniciarCarregamento={initCarregamento}
               finalizarCarregamento={finCarregamento}
-              saidaCD={saidaCD}
+              saidaDoCD={saidaCD}
               chegadaLoja={chegadaNaLoja}
               saidaLoja={saidadaNaLoja}
               ChegadaCD={chegadaNoCd}

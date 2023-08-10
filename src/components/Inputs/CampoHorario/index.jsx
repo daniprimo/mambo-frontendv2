@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { chegadaCD, 
+import {
+  chegadaCD,
   chegadaLoja,
-   fimCarregamento,
-    iniciarCarregamento,
-    saidaCD,
-    saidaLoja } from "../../../service";
+  fimCarregamento,
+  iniciarCarregamento,
+  saidaDoCD,
+  saidaLoja
+} from "../../../service";
 
 
 export function InputConsulta(props) {
@@ -21,7 +23,7 @@ export function InputConsulta(props) {
     mudarTelaPara(0)
   }
   const acaoSaidaCD = () => {
-    saidaCD(props.id)
+    saidaDoCD(props.id)
     mudarTelaPara(0)
   }
   
@@ -40,10 +42,7 @@ export function InputConsulta(props) {
     mudarTelaPara(0)
   }
 
-  const acaoSaidaCD = () => {
-    saidaCD(props.id)
-    mudarTelaPara(0)
-  }
+
 
 
   return (
@@ -161,7 +160,7 @@ export function InputConsulta(props) {
             focus-visible:outline focus-visible:outline-2
              focus-visible:outline-offset-2
               focus-visible:outline-indigo-600"
-            onClick={() => acaoSaidaCD()}
+            onClick={() => acaoSaidaLoja()}
           >consolidar</button>
 
         </div>
@@ -182,7 +181,7 @@ export function InputConsulta(props) {
          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
          focus:ring-2 focus:ring-inset focus:ring-indigo-600
           sm:text-sm sm:leading-6 text-center"
-              value={props.saidaCD}
+              value={props.saidaDoCD}
             />
           </div>
           <button
