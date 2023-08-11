@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { bucsarViagemPorId, buscarMotorista } from '../../../service'
+import React from 'react'
 
 
 export function CampoInputValueTexto(props){

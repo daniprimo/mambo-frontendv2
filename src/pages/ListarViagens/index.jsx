@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { bucsarViagem, bucsarViagemPorData } from "../../service";
-import ListaViagemPassadas from "../../components/ListarViagens";
-import Loading from "../../components/Loading";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ListaViagemPassadas from "../../components/ListarViagens";
+import Loading from "../../components/Loading";
+import { bucsarViagemPorData } from "../../service";
 
 export default function ListarViagem() {
   const [motorista, setMotorista] = useState([]);
